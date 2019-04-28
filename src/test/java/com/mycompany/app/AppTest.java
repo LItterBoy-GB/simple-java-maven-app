@@ -2,6 +2,8 @@ package com.mycompany.app;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.sql.SQLException;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.After;
@@ -30,8 +32,7 @@ public class AppTest
     }
 
     @Test
-    public void testAppMain()
-    {
+    public void testAppMain() throws SQLException, ClassNotFoundException {
         App.main(null);
         try {
             assertEquals("Hello World!" + System.getProperty("line.separator"), outContent.toString());
