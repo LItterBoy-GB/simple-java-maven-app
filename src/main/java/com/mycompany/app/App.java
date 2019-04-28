@@ -1,9 +1,6 @@
 package com.mycompany.app;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Hello world!
@@ -11,7 +8,7 @@ import java.sql.Statement;
 public class App
 {
 
-    private final String message = "Hello World!";
+    private final String message = "Hello World!\n";
 
     public App() {}
 
@@ -21,10 +18,11 @@ public class App
         Class.forName("com.mysql.jdbc.Driver");
         //2.连接到数据"库"上去
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ibk", "ibk", "i123b456k");
-            //3.构建SQL命令
-            Statement state=conn.createStatement();
-            state.executeQuery("select * from user;");
-            conn.close();
+        //3.构建SQL命令
+        Statement state=conn.createStatement();
+        ResultSet res =state.executeQuery("select * from user;");
+        System.out.println(res.getFetchSize());
+        conn.close();
     }
 
     private final String getMessage() {
